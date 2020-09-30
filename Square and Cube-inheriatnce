@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+class Number
+{
+  public:
+  int n1;
+  int getNumber()
+  {
+    cin>>n1;
+  }
+};
+class Square:public Number
+{
+  public:
+  void getSquare()
+  {
+    cout<<(n1*n1)<<endl;
+  }
+};
+class Cube:public Number
+{
+  public:
+  void getCube()
+  {
+    cout<<(n1*n1*n1)<<endl;
+  }
+};  
+int main()
+{
+  Square objS;
+  Cube objC;
+  objS.getNumber();
+  objS.getSquare();
+  objC.getNumber();
+  objC.getCube();
+  return 0;
+}
