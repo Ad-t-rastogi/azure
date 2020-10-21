@@ -1,0 +1,38 @@
+*/Hackerland is a one-dimensional city with houses aligned at integral locations along a road. The Mayor wants to install radio transmitters on the roofs of the city's houses. Each transmitter has a fixed range meaning it can transmit a signal to all houses within that number of units distance away.
+
+Given a map of Hackerland and the transmission range, determine the minimum number of transmitters so that every house is within range of at least one transmitter. Each transmitter must be installed on top of an existing house.
+
+For example, assume houses are located at  and the transmission range .  antennae at houses  and  and  would provide complete coverage. There is no house at location  to cover both  and . Ranges of coverage, are , , and .*/
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() 
+{
+    int n,k;
+    scanf("%d %d", &n, &k);
+    int x[100000];
+    for (int i=0; i<n; i++)
+        scanf("%d", &x[i]);
+    sort (x, x+n);
+    int l=-1, r=-1, ans=0;
+    for (int i=0; i<n; i++)
+    {
+        if (x[i] <= r)
+            continue;
+        if (l == -1)
+            l = x[i];
+        else if (x[i] - l > k)
+        {
+            ans++;
+            if (x[i]-x[i-1] <= k)
+                l = -1;
+            else
+                l = x[i];
+            r = x[i-1] + k;
+        }
+    }
+    printf("%d\n", ans+(l!=-1));
+}
